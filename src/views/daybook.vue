@@ -6,7 +6,7 @@
       <div class="timebook"></div>
       <div class="daybook"></div>
     </div>
-  </div>tt
+  </div>
 </template>
 
 <script>
