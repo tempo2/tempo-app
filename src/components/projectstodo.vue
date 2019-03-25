@@ -20,7 +20,7 @@
       <li><p>Project 4</p></li>
     </ul>
   </div>
-</div>woohooo
+</div>
 </template>
 
 <script>
