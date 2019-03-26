@@ -20,6 +20,8 @@
 </script>
 
 <style>
+@import './assets/css/custom.css';
+
 body {
   margin:0;
 }

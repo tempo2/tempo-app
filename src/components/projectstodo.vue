@@ -3,7 +3,7 @@
   <div class="projecttodo-list">
     <ul>
       <li class="project-todo-list_title">
-        <p>Projects</p><router-link to="/projects">ALL></router-link>
+        <p>Projects</p><router-link to="/projects">ALL</router-link>
       </li>
       <li><p>Project 1</p></li>
       <li><p>Project 2</p></li>
@@ -14,18 +14,24 @@
       <li class="project-todo-list_title">
         <p>To Do</p><span @click="showModal" class="new-btn_sm">+</span>
       </li>
-      <li><p>1. Email Fred</p></li>
-      <li><p></p></li>
-      <li><p></p></li>
-      <li><p></p></li>
+      <li v-bind:key="todo.id" v-for="todo in todos" >
+          <TodoItem v-bind:todo="todo" v-on:del-todo="deleteTodo"/>
+      </li>
+      <li v-for="lenghts in length" ><p></p></li>
+
+
     </ul>
   </div>
 
 
   <b-modal ref="myModalRef" hide-footer title="New Task">
   <div class="modalfooter">
-     <button class="btn-save" block @click="">Save</button>
-     <button class="btn-cancel" block @click="hideModal">Cancel</button>
+
+    <form  v-on:submit.prevent="newTodo" >
+      <input type="text" v-model="task" name="task" placeholder="Task Details">
+      <button type="submit" value="submit" class="btn-save" block >Save</button>
+      <button class="btn-cancel" block @click="hideModal">Cancel</button>
+    </form>
    </div>
 
  </b-modal>
@@ -37,113 +43,82 @@
 </template>
 
 <script>
+import TodoItem from './todoitems.vue'
+import NewTodo from './newtodo.vue'
 export default {
   name: "projectstodo",
+  components: {
+    TodoItem,
+    NewTodo
+  },
   methods: {
         showModal() {
           this.$refs.myModalRef.show()
         },
         hideModal() {
           this.$refs.myModalRef.hide()
+        },
+        deleteTodo(id) {
+          this.todos = this.todos.filter(todo => todo.id !== id);
+        },
+        newTodo(e) {
+          if (this.todos.length == 5){
+            console.log("max reached");
+            return;
+          } else {
+          e.preventDefault();
+          const anotherTodo = {
+            id: this.todos.length + 1,
+            task: this.task,
+            order: this.todos.length + 1,
+            urgency: 1,
+            importance: 1
+          }
+
+          this.todos.push(anotherTodo)
+          this.$emit('test1', this.todos)
+
+          this.$refs.myModalRef.hide()
         }
-      }
+        }
+      },
+  data () {
+    return {
+      todos: [
+        {
+          id: 1,
+          task: "Email Fred",
+          order: 1,
+          urgency: 1,
+          importance: 1
+        },
+        {
+          id: 2,
+          task: "Call Jane",
+          order: 2,
+          urgency: 1,
+          importance: 3
+        },
+        {
+          id: 3,
+          task: "Do Repot",
+          order: 3,
+          urgency: 1,
+          importance: 2
+        },
+      ],
+      task: ''
+    }
+  },
+  computed: {
+    length: function () {
+      return 5 - this.todos.length
+    }
+  }
+
 }
 </script>
 
 <style >
-/* project */
-.projecttodo-list{
-  background: #FCFCFC;
-  border: 1px solid #D8D8D8;
-  border-radius: 15px;
-  margin-top:15px;
-}
-.projecttodo-list ul {
-  list-style-type:none;
-  padding: 0;
-  margin:0;
-}
-.projecttodo-list ul li {
-  padding: 10px;
-  border-bottom: 1px solid #D8D8D8;
-}
-.projecttodo-list ul li:first-child{
-  border-radius: 15px 15px 0 0;
-}
-.projecttodo-list ul:last-child li:last-child{
-  border:none;
-}
-.projecttodo-list ul li p {
-  padding: 0;
-  margin:0;
-}
-.projecttodo-list ul .project-todo-list_title p
- {
-  display: inline-block;
-}
-.projecttodo-list ul .project-todo-list_title a,
-.projecttodo-list ul .project-todo-list_title span
- {
-  display: inline-block;
-  float: right;
-}
-.project-todo-list_title {
-  background:#F8F8F8;
-}
-/*To do list*/
-.todo-list li {
-  min-height:3.5vh;
-}
-/*To do Modal*/
-.modal-header {
-  border:none;
-}
-.modal-dialog {
-  margin: 40vh auto;
-}
-.modal-content {
-  border-radius: 15px;
-}
-.modalfooter {
-  width:100%;
-}
-.btn-save {
-  background: #4A4A4A;
-    color: white;
-    border-radius: 15px;
-    padding: 10px 15px 10px 15px;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    float:right;
-    margin-left: 1%;
-}
-.btn-cancel {
-    background: white;
-    border: 1px solid #CFCDCD !important;
-    border-radius: 15px;
-    padding: 10px 15px 10px 15px;
-    border: none;
-    font-size: 16px;
-    font-weight: 600;
-    float: right;
-}
-/* Button Small Style */
-
-.new-btn_sm {
-    background: #979494;
-    width: 30px;
-    color: white;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 22px;
-    float: right;
-    bottom: 5px;
-    position: relative;
-    cursor:pointer;
-}
-.new-btn_sm:hover {
-  background:##777474;
-}
 
 </style>

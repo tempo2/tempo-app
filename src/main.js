@@ -7,6 +7,7 @@ import '@progress/kendo-theme-material/dist/all.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+
 import { Menu, LayoutInstaller } from '@progress/kendo-layout-vue-wrapper'
 import { Grid, GridInstaller } from '@progress/kendo-grid-vue-wrapper'
 import { Calendar,
