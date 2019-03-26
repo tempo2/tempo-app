@@ -20,7 +20,8 @@ export default {
     calendar,
     projectstodo
   }
-}
+  }
+
 </script>
 
 <style>
