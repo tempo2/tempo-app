@@ -30,7 +30,7 @@
     <form  v-on:submit.prevent="newTodo" >
       <input type="text" v-model="task" name="task" placeholder="Task Details">
       <button type="submit" value="submit" class="btn-save" block >Save</button>
-      <button class="btn-cancel" block @click="hideModal">Cancel</button>
+      <span class="btn-cancel" block @click="hideModal">Cancel</span>
     </form>
    </div>
 
@@ -44,13 +44,11 @@
 
 <script>
 import TodoItem from './todoitems.vue'
-import NewTodo from './newtodo.vue'
 
 export default {
   name: "projectstodo",
   components: {
-    TodoItem,
-    NewTodo
+    TodoItem
   },
   methods: {
         showModal() {
