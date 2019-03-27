@@ -1,7 +1,7 @@
 <template>
 <div>
 <p>{{todo.order}}. {{todo.task}}</p>
-<span @click="$emit('del-todo', todo.id)">x</span>
+<span class="close-x" @click="$emit('del-todo', todo.id)"><i class="fas fa-times"></i></span>
 </div>
 </template>
 

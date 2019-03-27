@@ -45,6 +45,7 @@
 <script>
 import TodoItem from './todoitems.vue'
 import NewTodo from './newtodo.vue'
+
 export default {
   name: "projectstodo",
   components: {

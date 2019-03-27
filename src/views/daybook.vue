@@ -3,7 +3,7 @@
     <div class="grid-container">
       <div class="calendar"><calendar /></div>
       <div class="projecttodo"><projectstodo/> </div>
-      <div class="timebook"></div>
+      <div class="timebook"><TimeBook /></div>
       <div class="daybook"></div>
     </div>
   </div>
@@ -12,13 +12,15 @@
 <script>
 import calendar from "../components/calendar";
 import projectstodo from "../components/projectstodo"
+import TimeBook from "../components/daybooktime"
 
 export default {
 
   name: "daybook",
   components: {
     calendar,
-    projectstodo
+    projectstodo,
+    TimeBook
   }
   }
 
@@ -42,7 +44,7 @@ export default {
 
 .projecttodo { grid-area: projecttodo; }
 
-.timebook { grid-area: timebook; }
+.timebook { grid-area: timebook;padding-left:15px; }
 
 .daybook { grid-area: daybook; }
 

@@ -142,7 +142,7 @@
 
 .new-btn_sm {
     background: #979494;
-    width: 30px;
+    width: 33px;
     color: white;
     border-radius: 50px;
     text-align: center;
@@ -151,7 +151,16 @@
     bottom: 5px;
     position: relative;
     cursor:pointer;
+    font-weight:600;
 }
 .new-btn_sm:hover {
   background:##777474;
+}
+
+/** close **/
+
+.close-x {
+  font-size: 13px;
+color: inherit;
+
 }
